@@ -120,7 +120,10 @@ export function CreateAgentDialog({
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Deep Research Agent"
               className="mt-1"
-              onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
+              onKeyDown={(e) => {
+                if (e.key !== "Enter" || e.nativeEvent.isComposing) return;
+                handleSubmit();
+              }}
             />
           </div>
 
